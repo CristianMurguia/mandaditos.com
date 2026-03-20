@@ -3,19 +3,43 @@
 {% block titulo %}Inicio — mandaditos.com{% endblock %}
 
 {% block contenido %}
-    <div class="seccion">
-        <h2>Registrar</h2>
-        <a href="{% url 'registrar_cliente' %}" class="btn">Cliente</a>
-        <a href="{% url 'registrar_restaurante' %}" class="btn">Restaurante</a>
-        <a href="{% url 'registrar_repartidor' %}" class="btn">Repartidor</a>
-        <a href="{% url 'registrar_pedido' %}" class="btn">Pedido</a>
+
+<div class="container mt-5">
+
+  <h1 class="text-center mb-5">🚚 Mandaditos.com</h1>
+
+  <div class="row">
+
+    <!-- REGISTRAR -->
+    <div class="col-md-6">
+      <div class="card shadow p-4 mb-4">
+        <h3 class="text-center mb-3">Registrar</h3>
+
+        <div class="d-grid gap-2">
+          <a href="{% url 'registrar_cliente' %}" class="btn btn-primary">Cliente</a>
+          <a href="{% url 'registrar_restaurante' %}" class="btn btn-success">Restaurante</a>
+          <a href="{% url 'registrar_repartidor' %}" class="btn btn-warning">Repartidor</a>
+          <a href="{% url 'registrar_pedido' %}" class="btn btn-danger">Pedido</a>
+        </div>
+      </div>
     </div>
 
-    <div class="seccion">
-        <h2>Gestionar</h2>
-        <a href="{% url 'lista_clientes' %}" class="btn">Clientes</a>
-        <a href="{% url 'lista_restaurantes' %}" class="btn">Restaurantes</a>
-        <a href="{% url 'lista_repartidores' %}" class="btn">Repartidores</a>
-        <a href="{% url 'lista_pedidos' %}" class="btn">Pedidos</a>
+    <!-- GESTIONAR -->
+    <div class="col-md-6">
+      <div class="card shadow p-4 mb-4">
+        <h3 class="text-center mb-3">Gestionar</h3>
+
+        <div class="d-grid gap-2">
+          <a href="{% url 'lista_clientes' %}" class="btn btn-outline-primary">Clientes</a>
+          <a href="{% url 'lista_restaurantes' %}" class="btn btn-outline-success">Restaurantes</a>
+          <a href="{% url 'lista_repartidores' %}" class="btn btn-outline-warning">Repartidores</a>
+          <a href="{% url 'lista_pedidos' %}" class="btn btn-outline-danger">Pedidos</a>
+        </div>
+      </div>
     </div>
+
+  </div>
+
+</div>
+
 {% endblock %}

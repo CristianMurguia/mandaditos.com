@@ -3,11 +3,15 @@
 {% block titulo %}Restaurantes — mandaditos.com{% endblock %}
 
 {% block contenido %}
-    <h1>Restaurantes</h1>
+<div class="container mt-5">
 
-    <a href="{% url 'registrar_restaurante' %}" class="btn">+ Nuevo Restaurante</a>
+    <h1 class="text-center mb-4">🍔 Restaurantes</h1>
 
-    <br><br>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'registrar_restaurante' %}" class="btn btn-success">
+            + Nuevo Restaurante
+        </a>
+    </div>
 
     {% if restaurantes %}
         <table class="tabla">
@@ -26,10 +30,14 @@
                 {% for restaurante in restaurantes %}
                 <tr>
                     <td>{{ restaurante.pk }}</td>
-                    <td>{{ restaurante.nombre }}</td>
+                    <td class="fw-semibold">{{ restaurante.nombre }}</td>
                     <td>{{ restaurante.categoria }}</td>
                     <td>{{ restaurante.telefono }}</td>
-                    <td>{{ restaurante.rating }} ⭐</td>
+                    <td>
+                        <span class="text-warning">
+                            {{ restaurante.rating }} ⭐
+                        </span>
+                    </td>
                     <td>{% if restaurante.activo %}✅{% else %}❌{% endif %}</td>
                     <td class="acciones">
                         <a href="{% url 'editar_restaurante' restaurante.pk %}" class="btn">Editar</a>
@@ -41,8 +49,12 @@
             </tbody>
         </table>
     {% else %}
-        <div class="objeto-info">
-            <p>No hay restaurantes registrados aún. <a href="{% url 'registrar_restaurante' %}">Registrar uno</a></p>
+         <div class="alert alert-info text-center">
+            No hay restaurantes registrados aún.
+            <br>
+            <a href="{% url 'registrar_restaurante' %}" class="btn btn-primary mt-2">
+                Registrar uno
+            </a>
         </div>
     {% endif %}
 {% endblock %}

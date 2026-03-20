@@ -3,15 +3,20 @@
 {% block titulo %}Clientes — mandaditos.com{% endblock %}
 
 {% block contenido %}
-    <h1>Clientes</h1>
+<div class="container mt-5">
+    <h1 class=""text-center mb-4>👥 Clientes</h1>
+    <a href="{% url 'registrar_cliente' %}" class="btn btn-success">
+        + Nuevo Cliente
+    </a>
+</div>
 
-    <a href="{% url 'registrar_cliente' %}" class="btn">+ Nuevo Cliente</a>
-
-    <br><br>
 
     {% if clientes %}
-        <table class="tabla">
-            <thead>
+    <div class="card shadow p-3">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark text-center">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -22,27 +27,59 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+
+            <tbody class="text-center">
                 {% for cliente in clientes %}
                 <tr>
                     <td>{{ cliente.pk }}</td>
-                    <td>{{ cliente.nombre }}</td>
+                    <td class="fw-semibold">{{ cliente.nombre }}</td>
                     <td>{{ cliente.email }}</td>
                     <td>{{ cliente.telefono }}</td>
-                    <td>{{ cliente.rating }} ⭐</td>
-                    <td>{% if cliente.activo %}✅{% else %}❌{% endif %}</td>
-                    <td class="acciones">
-                        <a href="{% url 'editar_cliente' cliente.pk %}" class="btn">Editar</a>
-                        <a href="{% url 'eliminar_cliente' cliente.pk %}" class="btn-eliminar">Eliminar</a>
-                        <a href="{% url 'rating_cliente' cliente.pk %}" class="btn-guardar">Rating</a>
+
+                    <td>
+                        {% if cliente.activo %}
+                            <span class="badge bg-success">Activo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactivo</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <span class="text-warning">
+                            {{ cliente.rating }} ⭐
+                        </span>
+                    </td>
+
+                    <td>
+                        <a href="{% url 'editar_cliente' cliente.pk %}" class="btn btn-sm btn-warning">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'eliminar_cliente' cliente.pk %}" class="btn btn-sm btn-danger">
+                            Eliminar
+                        </a>
+
+                        <a href="{% url 'rating_cliente' cliente.pk %}" class="btn btn-sm btn-primary">
+                            Rating
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
+
         </table>
+
+    </div>
     {% else %}
-        <div class="objeto-info">
-            <p>No hay clientes registrados aún. <a href="{% url 'registrar_cliente' %}">Registrar uno</a></p>
+        <div class="alert alert-info text-center">
+            No hay clientes registrados aún.
+            <br>
+            <a href="{% url 'registrar_cliente' %}" class="btn btn-primary mt-2">
+                Registrar uno
+            </a>
         </div>
     {% endif %}
+
+</div>
+
 {% endblock %}
