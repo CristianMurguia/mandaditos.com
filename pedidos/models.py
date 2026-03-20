@@ -8,6 +8,7 @@ class Cliente(models.Model):
     direccion = models.TextField()
     activo    = models.BooleanField(default=True)
     creado_en = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.nombre
@@ -20,6 +21,7 @@ class Restaurante(models.Model):
     categoria = models.CharField(max_length=80)
     activo    = models.BooleanField(default=True)
     creado_en = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.nombre
@@ -37,6 +39,7 @@ class Repartidor(models.Model):
     disponible = models.BooleanField(default=True)
     activo     = models.BooleanField(default=True)
     creado_en  = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.nombre
@@ -65,6 +68,7 @@ class Pedido(models.Model):
     status      = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pendiente')
     creado_en   = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
+    rating = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return f'Pedido #{self.pk} — {self.cliente}'

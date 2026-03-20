@@ -8,9 +8,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     color: #333;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 0 20px;
 }
 
 h1 {
@@ -139,4 +136,68 @@ a:hover {
 .seccion a {
     display: inline-block;
     margin: 5px;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tabla th {
+    background: #e74c3c;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabla td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla tr:hover {
+    background: #f9f9f9;
+}
+
+.acciones {
+    display: flex;
+    gap: 5px;
+}
+
+.navbar {
+    background: #e74c3c;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+}
+
+.contenido {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
 }

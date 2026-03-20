@@ -1,0 +1,48 @@
+{% extends 'pedidos/base.html' %}
+
+{% block titulo %}Repartidores — mandaditos.com{% endblock %}
+
+{% block contenido %}
+    <h1>Repartidores</h1>
+
+    <a href="{% url 'registrar_repartidor' %}" class="btn">+ Nuevo Repartidor</a>
+
+    <br><br>
+
+    {% if repartidores %}
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Vehículo</th>
+                    <th>Disponible</th>
+                    <th>Rating</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for repartidor in repartidores %}
+                <tr>
+                    <td>{{ repartidor.pk }}</td>
+                    <td>{{ repartidor.nombre }}</td>
+                    <td>{{ repartidor.telefono }}</td>
+                    <td>{{ repartidor.get_vehiculo_display }}</td>
+                    <td>{{ repartidor.rating }} ⭐</td>
+                    <td>{% if repartidor.disponible %}✅{% else %}❌{% endif %}</td>
+                    <td class="acciones">
+                        <a href="{% url 'editar_repartidor' repartidor.pk %}" class="btn">Editar</a>
+                        <a href="{% url 'eliminar_repartidor' repartidor.pk %}" class="btn-eliminar">Eliminar</a>
+                        <a href="{% url 'rating_repartidor' repartidor.pk %}" class="btn-guardar">Rating</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="objeto-info">
+            <p>No hay repartidores registrados aún. <a href="{% url 'registrar_repartidor' %}">Registrar uno</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

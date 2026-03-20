@@ -7,6 +7,23 @@ from .forms import ClienteForm, RestauranteForm, RepartidorForm, PedidoForm
 def home(request):
     return render(request, 'pedidos/home.html')
 
+#vistas de prueba
+def lista_clientes(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'pedidos/lista_clientes.html', {'clientes': clientes})
+
+def lista_restaurantes(request):
+    restaurantes = Restaurante.objects.all()
+    return render(request, 'pedidos/lista_restaurantes.html', {'restaurantes': restaurantes})
+
+def lista_repartidores(request):
+    repartidores = Repartidor.objects.all()
+    return render(request, 'pedidos/lista_repartidores.html', {'repartidores': repartidores})
+
+def lista_pedidos(request):
+    pedidos = Pedido.objects.all()
+    return render(request, 'pedidos/lista_pedidos.html', {'pedidos': pedidos})
+
 # REGISTRAR
 def registrar_cliente(request):
     form = ClienteForm(request.POST or None)
@@ -134,7 +151,7 @@ def rating_cliente(request, pk):
             cliente.rating = int(nuevo_rating)
             cliente.save()
             messages.success(request, 'Calificación del cliente guardada.')
-            return redirect('editar_cliente', pk=pk)
+            return redirect('lista_clientes')
     return render(request, 'pedidos/rating.html', {'titulo': 'Calificar Cliente', 'objeto': cliente})
 
 def rating_restaurante(request, pk):
@@ -145,7 +162,7 @@ def rating_restaurante(request, pk):
             restaurante.rating = int(nuevo_rating)
             restaurante.save()
             messages.success(request, 'Calificación del restaurante guardada.')
-            return redirect('editar_restaurante', pk=pk)
+            return redirect('lista_restaurantes')
     return render(request, 'pedidos/rating.html', {'titulo': 'Calificar Restaurante', 'objeto': restaurante})
 
 def rating_repartidor(request, pk):
@@ -156,5 +173,5 @@ def rating_repartidor(request, pk):
             repartidor.rating = int(nuevo_rating)
             repartidor.save()
             messages.success(request, 'Calificación del repartidor guardada.')
-            return redirect('editar_repartidor', pk=pk)
+            return redirect('lista_repartidores')
     return render(request, 'pedidos/rating.html', {'titulo': 'Calificar Repartidor', 'objeto': repartidor})

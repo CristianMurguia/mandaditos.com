@@ -1,0 +1,48 @@
+{% extends 'pedidos/base.html' %}
+
+{% block titulo %}Restaurantes — mandaditos.com{% endblock %}
+
+{% block contenido %}
+    <h1>Restaurantes</h1>
+
+    <a href="{% url 'registrar_restaurante' %}" class="btn">+ Nuevo Restaurante</a>
+
+    <br><br>
+
+    {% if restaurantes %}
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Teléfono</th>
+                    <th>Activo</th>
+                    <th>Rating</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for restaurante in restaurantes %}
+                <tr>
+                    <td>{{ restaurante.pk }}</td>
+                    <td>{{ restaurante.nombre }}</td>
+                    <td>{{ restaurante.categoria }}</td>
+                    <td>{{ restaurante.telefono }}</td>
+                    <td>{{ restaurante.rating }} ⭐</td>
+                    <td>{% if restaurante.activo %}✅{% else %}❌{% endif %}</td>
+                    <td class="acciones">
+                        <a href="{% url 'editar_restaurante' restaurante.pk %}" class="btn">Editar</a>
+                        <a href="{% url 'eliminar_restaurante' restaurante.pk %}" class="btn-eliminar">Eliminar</a>
+                        <a href="{% url 'rating_restaurante' restaurante.pk %}" class="btn-guardar">Rating</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="objeto-info">
+            <p>No hay restaurantes registrados aún. <a href="{% url 'registrar_restaurante' %}">Registrar uno</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

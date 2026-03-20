@@ -1,44 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>mandaditos.com</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'pedidos/css/styles.css' %}">
-</head>
-<body>
-    <h1> mandaditos.com</h1>
+{% extends 'pedidos/base.html' %}
 
+{% block titulo %}Inicio — mandaditos.com{% endblock %}
+
+{% block contenido %}
     <div class="seccion">
         <h2>Registrar</h2>
-        <a href="{% url 'registrar_cliente' %}" class="btn"> Cliente</a>
-        <a href="{% url 'registrar_restaurante' %}" class="btn"> Restaurante</a>
-        <a href="{% url 'registrar_repartidor' %}" class="btn"> Repartidor</a>
-        <a href="{% url 'registrar_pedido' %}" class="btn"> Pedido</a>
+        <a href="{% url 'registrar_cliente' %}" class="btn">Cliente</a>
+        <a href="{% url 'registrar_restaurante' %}" class="btn">Restaurante</a>
+        <a href="{% url 'registrar_repartidor' %}" class="btn">Repartidor</a>
+        <a href="{% url 'registrar_pedido' %}" class="btn">Pedido</a>
     </div>
 
     <div class="seccion">
-        <h2>Editar</h2>
-        <a href="{% url 'editar_cliente' 0 %}" class="btn"> Cliente</a>
-        <a href="{% url 'editar_restaurante' 0 %}" class="btn"> Restaurante</a>
-        <a href="{% url 'editar_repartidor' 0 %}" class="btn"> Repartidor</a>
-        <a href="{% url 'editar_pedido' 0 %}" class="btn"> Pedido</a>
+        <h2>Gestionar</h2>
+        <a href="{% url 'lista_clientes' %}" class="btn">Clientes</a>
+        <a href="{% url 'lista_restaurantes' %}" class="btn">Restaurantes</a>
+        <a href="{% url 'lista_repartidores' %}" class="btn">Repartidores</a>
+        <a href="{% url 'lista_pedidos' %}" class="btn">Pedidos</a>
     </div>
-
-    <div class="seccion">
-        <h2>Eliminar</h2>
-        <a href="{% url 'eliminar_cliente' 0 %}" class="btn-eliminar"> Cliente</a>
-        <a href="{% url 'eliminar_restaurante' 0 %}" class="btn-eliminar"> Restaurante</a>
-        <a href="{% url 'eliminar_repartidor' 0 %}" class="btn-eliminar"> Repartidor</a>
-        <a href="{% url 'eliminar_pedido' 0 %}" class="btn-eliminar"> Pedido</a>
-    </div>
-
-    <div class="seccion">
-        <h2>Rating</h2>
-        <a href="{% url 'rating_cliente' 0 %}" class="btn-guardar"> Cliente</a>
-        <a href="{% url 'rating_restaurante' 0 %}" class="btn-guardar"> Restaurante</a>
-        <a href="{% url 'rating_repartidor' 0 %}" class="btn-guardar"> Repartidor</a>
-    </div>
-
-</body>
-</html>
+{% endblock %}

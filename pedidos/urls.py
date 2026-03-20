@@ -6,6 +6,12 @@ urlpatterns = [
     #Home pag Principal
     path('', views.home, name='home'),
 
+    #pruebas
+    path('clientes/', views.lista_clientes, name='lista_clientes'),
+    path('restaurantes/', views.lista_restaurantes, name='lista_restaurantes'),
+    path('repartidores/', views.lista_repartidores, name='lista_repartidores'),
+    path('pedidos/', views.lista_pedidos, name='lista_pedidos'),
+
     # REGISTRAR
     path('clientes/nuevo/',      views.registrar_cliente,     name='registrar_cliente'),
     path('restaurantes/nuevo/',  views.registrar_restaurante, name='registrar_restaurante'),

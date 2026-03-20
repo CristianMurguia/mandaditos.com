@@ -1,0 +1,48 @@
+{% extends 'pedidos/base.html' %}
+
+{% block titulo %}Clientes — mandaditos.com{% endblock %}
+
+{% block contenido %}
+    <h1>Clientes</h1>
+
+    <a href="{% url 'registrar_cliente' %}" class="btn">+ Nuevo Cliente</a>
+
+    <br><br>
+
+    {% if clientes %}
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Activo</th>
+                    <th>Rating</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.pk }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ cliente.rating }} ⭐</td>
+                    <td>{% if cliente.activo %}✅{% else %}❌{% endif %}</td>
+                    <td class="acciones">
+                        <a href="{% url 'editar_cliente' cliente.pk %}" class="btn">Editar</a>
+                        <a href="{% url 'eliminar_cliente' cliente.pk %}" class="btn-eliminar">Eliminar</a>
+                        <a href="{% url 'rating_cliente' cliente.pk %}" class="btn-guardar">Rating</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="objeto-info">
+            <p>No hay clientes registrados aún. <a href="{% url 'registrar_cliente' %}">Registrar uno</a></p>
+        </div>
+    {% endif %}
+{% endblock %}
