@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}mandaditos.com{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pedidos/css/styles.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="navbar-brand">mandaditos.com</a>
+        <div class="navbar-links">
+            <a href="{% url 'home' %}">Inicio</a>
+            <a href="{% url 'lista_clientes' %}">Clientes</a>
+            <a href="{% url 'lista_restaurantes' %}">Restaurantes</a>
+            <a href="{% url 'lista_repartidores' %}">Repartidores</a>
+            <a href="{% url 'lista_pedidos' %}">Pedidos</a>
+        </div>
+    </nav>
+
+    <div class="contenido">
+        {% block contenido %}{% endblock %}
+    </div>
+
+</body>
+</html>

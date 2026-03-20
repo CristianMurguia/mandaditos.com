@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ titulo }}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'pedidos/css/styles.css' %}">
-</head>
-<body>
+{% extends 'pedidos/base.html' %}
+
+{% block titulo %}{{ titulo }} — mandaditos.com{% endblock %}
+
+{% block contenido %}
     <h1>{{ titulo }}</h1>
 
     {% if messages %}
@@ -30,5 +26,4 @@
         {% endfor %}
         <button type="submit" class="btn">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock %}
