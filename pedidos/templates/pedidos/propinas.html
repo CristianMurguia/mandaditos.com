@@ -1,0 +1,31 @@
+{% extends "pedidos/base.html" %}
+
+{% block contenido %} <div style="max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); text-align: center; font-family: sans-serif; border-top: 5px solid #d9534f;">
+    <h2 style="color: #333;">Añadir Propina </h2>
+    <p style="color: #666;">Pedido #{{ pedido.id }} para <strong>{{ pedido.cliente.nombre }}</strong></p>
+    
+    <div style="background: #fdf2f2; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #f5c6cb;">
+        <span style="font-size: 1.2em; color: #721c24;">Subtotal: <strong>${{ pedido.total }}</strong></span>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="propina" style="display: block; margin-bottom: 10px; font-weight: bold; color: #555;">¿Cuánto deseas dejar de propina?</label>
+        
+        <select name="propina" id="propina" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; margin-bottom: 20px; background-color: #fff;">
+            <option value="0" {% if pedido.propina == '0' %}selected{% endif %}>Sin propina (0%)</option>
+            <option value="10" {% if pedido.propina == '10' %}selected{% endif %}>Buen servicio (10%) ⭐</option>
+            <option value="15" {% if pedido.propina == '15' %}selected{% endif %}>Excelente (15%) ⭐⭐</option>
+            <option value="20" {% if pedido.propina == '20' %}selected{% endif %}>¡Súper repartidor! (20%) ⭐⭐⭐</option>
+            <option value="25" {% if pedido.propina == '25' %}selected{% endif %}>Propina legendaria (25%) 🏆</option>
+        </select>
+
+        <button type="submit" style="width: 100%; background: #d9534f; color: white; border: none; padding: 15px; border-radius: 5px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: 0.3s;">
+            Confirmar Propina
+        </button>
+    </form>
+    
+    <br>
+    <a href="{% url 'lista_pedidos' %}" style="color: #666; text-decoration: none; font-size: 0.9em;">← Volver a Pedidos</a>
+</div>
+{% endblock %}

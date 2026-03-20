@@ -99,12 +99,28 @@ def editar_pedido(request, pk):
 # STATUS 
 
 def cambiar_status(request, pk):
-    pass
+    pedido = get_object_or_404(Pedido, pk=pk)
+    if request.method == 'POST':
+        nuevo_status = request.POST.get('status')
+        pedido.status = nuevo_status
+        pedido.save()
+        messages.success(request, f'Estado del pedido #{pedido.pk} actualizado a {pedido.get_status_display()}.')
+        return redirect('lista_pedidos')
+    
+    return render(request, 'pedidos/status.html', {'pedido': pedido})
 
 
 # PROPINAS
 def gestionar_propina(request, pk):
-    pass
+    pedido = get_object_or_404(Pedido, pk=pk)
+    if request.method == 'POST':
+        nueva_propina = request.POST.get('propina')
+        pedido.propina = nueva_propina
+        pedido.save()
+        messages.success(request, f'Propina del {nueva_propina}% aplicada al pedido #{pedido.pk}.')
+        return redirect('editar_pedido', pk=pk)
+    
+    return render(request, 'pedidos/propinas.html', {'pedido': pedido})
 
 
 # ELIMINAR 

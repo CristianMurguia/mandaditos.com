@@ -1,0 +1,31 @@
+{% extends "pedidos/base.html" %}
+
+{% block contenido %}
+<div style="max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); text-align: center; font-family: sans-serif; border-top: 5px solid #28a745;">
+    <h2 style="color: #333;">Actualizar Estado </h2>
+    <p style="color: #666;">Pedido #{{ pedido.id }} - <strong>{{ pedido.cliente.nombre }}</strong></p>
+    
+    <div style="margin: 20px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+        Estado actual: <strong>{{ pedido.get_status_display }}</strong>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="status" style="display: block; margin-bottom: 10px; font-weight: bold;">Selecciona el nuevo estado:</label>
+        
+        <select name="status" id="status" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; margin-bottom: 20px;">
+            <option value="pendiente" {% if pedido.status == 'pendiente' %}selected{% endif %}> Pendiente</option>
+            <option value="servido" {% if pedido.status == 'servido' %}selected{% endif %}> Servido (En cocina)</option>
+            <option value="reparto" {% if pedido.status == 'reparto' %}selected{% endif %}> En Reparto</option>
+            <option value="entregado" {% if pedido.status == 'entregado' %}selected{% endif %}> Entregado</option>
+        </select>
+
+        <button type="submit" style="width: 100%; background: #28a745; color: white; border: none; padding: 15px; border-radius: 5px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+            Actualizar Estado
+        </button>
+    </form>
+    
+    <br>
+    <a href="{% url 'lista_pedidos' %}" style="color: #666; text-decoration: none; font-size: 0.9em;">← Volver a la lista</a>
+</div>
+{% endblock %}
