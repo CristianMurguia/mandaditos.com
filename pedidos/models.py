@@ -61,9 +61,9 @@ class Pedido(models.Model):
     ]
 
 
-    cliente     = models.ForeignKey(Cliente,     on_delete=models.PROTECT)
-    restaurante = models.ForeignKey(Restaurante, on_delete=models.PROTECT)
-    repartidor  = models.ForeignKey(Repartidor,  on_delete=models.PROTECT, null=True, blank=True)
+    cliente     = models.ForeignKey(Cliente,     on_delete=models.CASCADE)
+    restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
+    repartidor  = models.ForeignKey(Repartidor,  on_delete=models.CASCADE, null=True, blank=True)
     descripcion = models.TextField()
     total       = models.DecimalField(max_digits=8, decimal_places=2)
     propina = models.IntegerField(choices=PROPINA_CHOICES, default=0)
